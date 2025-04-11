@@ -2,13 +2,37 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/cor
 import { CommonModule } from '@angular/common';
 import { Trip } from '../../models/trip.model';
 import { TripService } from '../../services/trip.service';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-trip-visualizer',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './trip-visualizer.component.html',
-  styleUrls: ['./trip-visualizer.component.scss']
+  styleUrls: ['./trip-visualizer.component.scss'],
+  animations: [
+    trigger('nodeAnimation', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'scale(0)' }),
+        animate('300ms ease-out', style({ opacity: 1, transform: 'scale(1)' }))
+      ]),
+      transition(':leave', [
+        animate('200ms ease-in', style({ opacity: 0, transform: 'scale(0)' }))
+      ])
+    ]),
+    trigger('pathAnimation', [
+      transition(':enter', [
+        style({ strokeDasharray: '{{pathLength}}', strokeDashoffset: '{{pathLength}}' }),
+        animate('500ms ease-out', style({ strokeDashoffset: 0 }))
+      ], { params: { pathLength: 0 } })
+    ]),
+    trigger('labelAnimation', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(10px)' }),
+        animate('300ms 150ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
+      ])
+    ])
+  ]
 })
 export class TripVisualizerComponent implements OnInit, OnChanges {
   @Input() trips: Trip[] = [];
@@ -107,5 +131,20 @@ export class TripVisualizerComponent implements OnInit, OnChanges {
 
   getSvgHeight(): number {
     return this.LEVEL_HEIGHT * 2 + this.SVG_PADDING * 2;
+  }
+
+  // Add new method to calculate path length
+  getPathLength(from: string, to: string, level: number): number {
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', this.getPathD(from, to, level));
+    return path.getTotalLength();
+  }
+
+  trackByPath(index: number, path: any): string {
+    return `${path.from}-${path.to}-${path.level}`;
+  }
+
+  trackByNode(index: number, node: any): string {
+    return node.id;
   }
 } 

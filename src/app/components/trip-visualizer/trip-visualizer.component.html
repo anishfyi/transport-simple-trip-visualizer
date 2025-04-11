@@ -1,7 +1,7 @@
 <div class="visualization-container">
   <svg [attr.width]="getSvgWidth()" [attr.height]="getSvgHeight()">
     <!-- Paths -->
-    <g *ngFor="let path of paths">
+    <g *ngFor="let path of paths; trackBy: trackByPath">
       <path
         [attr.d]="getPathD(path.from, path.to, path.level)"
         [class.continued]="path.isContinued"
@@ -10,16 +10,21 @@
         stroke="currentColor"
         stroke-width="2"
         marker-end="url(#arrowhead)"
+        [@pathAnimation]="{
+          value: '',
+          params: { pathLength: getPathLength(path.from, path.to, path.level) }
+        }"
       />
     </g>
 
     <!-- Nodes -->
-    <g *ngFor="let node of nodes">
+    <g *ngFor="let node of nodes; trackBy: trackByNode">
       <circle
         [attr.cx]="node.x"
         [attr.cy]="node.y"
         [attr.r]="NODE_RADIUS"
         class="node"
+        [@nodeAnimation]
       />
       <text
         [attr.x]="node.x"
@@ -27,6 +32,7 @@
         text-anchor="middle"
         dominant-baseline="middle"
         class="node-label"
+        [@labelAnimation]
       >
         {{ node.label }}
       </text>
