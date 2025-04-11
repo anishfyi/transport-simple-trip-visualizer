@@ -1,4 +1,4 @@
-# Transport Simple Trip Visualizer
+# Trip Visualizer
 
 A modern Angular application for visualizing transport trips with support for continued and repeated trip detection. Built with Angular 17+ and Vite.
 

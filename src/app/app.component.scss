@@ -2,7 +2,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  padding: 0.5rem;
   width: 100%;
   max-width: 1800px;
   margin: 0 auto;
@@ -11,13 +11,13 @@
 
 header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 
   h1 {
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-size: clamp(1.25rem, 3vw, 2.5rem);
     color: #333;
     margin: 0;
-    padding: 0 1rem;
+    padding: 0 0.5rem;
   }
 }
 
@@ -25,14 +25,14 @@ main {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
   width: 100%;
 }
 
 .content {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
   width: 100%;
 
   // Trip input takes limited width and centered
@@ -44,8 +44,8 @@ main {
   // Visualizer takes full width with responsive sizing
   app-trip-visualizer {
     width: 100%;
-    min-width: min(100%, 800px);
-    height: 300px;
+    min-width: min(100%, 300px);
+    height: clamp(200px, 50vh, 300px);
     display: block;
     background-color: #fff;
     border-radius: 8px;
@@ -57,13 +57,39 @@ main {
 
 footer {
   text-align: center;
-  margin-top: 2rem;
-  padding: 1rem;
+  margin-top: 1rem;
+  padding: 0.5rem;
   color: #666;
+  font-size: clamp(0.75rem, 2vw, 1rem);
 }
 
 // Tablet and larger screens
 @media (min-width: 768px) {
+  .app-container {
+    padding: 1rem;
+  }
+
+  .content {
+    gap: 2rem;
+
+    app-trip-visualizer {
+      width: 90%;
+      height: clamp(250px, 60vh, 400px);
+    }
+  }
+
+  header {
+    margin-bottom: 2rem;
+  }
+
+  footer {
+    margin-top: 2rem;
+    padding: 1rem;
+  }
+}
+
+// Large screens
+@media (min-width: 1200px) {
   .app-container {
     padding: 2rem;
   }
@@ -72,18 +98,8 @@ footer {
     gap: 3rem;
 
     app-trip-visualizer {
-      width: 90%;
-    }
-  }
-}
-
-// Large screens
-@media (min-width: 1200px) {
-  .content {
-    gap: 4rem;
-
-    app-trip-visualizer {
       width: 95%;
+      height: clamp(300px, 70vh, 500px);
     }
   }
 }

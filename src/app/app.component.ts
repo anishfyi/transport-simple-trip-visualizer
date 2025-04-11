@@ -15,7 +15,7 @@ import { Trip } from './models/trip.model';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Transport Simple Trip Visualizer';
+  title = 'Trip Visualizer';
   trips$: Observable<Trip[]>;
 
   constructor(private tripService: TripService) {
