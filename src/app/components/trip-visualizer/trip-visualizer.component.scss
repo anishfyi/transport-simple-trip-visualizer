@@ -1,67 +1,80 @@
 .visualization-container {
   width: 100%;
   height: 100%;
+  min-height: 120px;
   overflow: auto;
   background-color: #ffffff;
   border-radius: 8px;
   box-sizing: border-box;
   position: relative;
-  -webkit-overflow-scrolling: touch;
+  padding: 20px 0;
 
   svg {
     display: block;
-    min-width: 300px;
-    width: 100%;
-    height: 100%;
+    min-width: 900px;
+    height: 100px;
     padding: 10px;
     box-sizing: border-box;
-  }
 
-  .node {
-    fill: #ffffff;
-    stroke: #333;
-    stroke-width: 2;
-    transition: all 0.3s ease;
-    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.1));
-
-    &:hover {
-      fill: #e0e0e0;
-      cursor: pointer;
-      filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.2));
-    }
-  }
-
-  .node-label {
-    font-size: 14px;
-    font-weight: 600;
-    fill: #333;
-    pointer-events: none;
-    transition: transform 0.3s ease;
-    user-select: none;
-  }
-
-  path {
-    transition: all 0.3s ease;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-
-    &.continued {
-      stroke: #4caf50;
-      stroke-dasharray: none;
+    .paths-layer {
+      path {
+        fill: none !important;
+        stroke: #4a4af4 !important;
+        stroke-width: 1.5px !important;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        pointer-events: none;
+        opacity: 0.8;
+      }
     }
 
-    &.repeated {
-      stroke: #ff9800;
-      stroke-dasharray: 5, 5;
+    .labels-layer {
+      .path-label {
+        font-size: 11px;
+        font-weight: 500;
+        text-anchor: middle;
+        dominant-baseline: text-before-edge;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        pointer-events: none;
+        fill: #4a4af4;
+        opacity: 0.8;
+      }
     }
 
-    &:not(.continued):not(.repeated) {
-      stroke: #2196f3;
-    }
+    .nodes-layer {
+      .node {
+        r: 5;
+        stroke-width: 1.5;
 
-    &:hover {
-      stroke-width: 3;
-      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        &.filled-blue {
+          fill: #4a4af4;
+          stroke: #4a4af4;
+        }
+
+        &.empty {
+          fill: #ffffff;
+          stroke: #2b2b2b;
+          stroke-width: 1;
+        }
+      }
+
+      .node-label {
+        font-size: 11px;
+        font-weight: 500;
+        text-anchor: middle;
+        dominant-baseline: text-before-edge;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        pointer-events: none;
+        transform: translateY(20px);
+
+        &.filled-blue-text {
+          fill: #4a4af4;
+        }
+
+        &.empty-text {
+          fill: #666666;
+        }
+      }
     }
   }
 
@@ -85,57 +98,28 @@
     }
   }
 
-  // Add fade effect for scrollable content
-  &::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: 100%;
-    width: 30px;
-    background: linear-gradient(to right, transparent, #ffffff);
-    pointer-events: none;
-  }
-
   // Media queries for responsive design
   @media screen and (max-width: 480px) {
-    .node {
-      stroke-width: 1.5;
-    }
+    padding: 10px 0;
 
-    .node-label {
-      font-size: 12px;
-    }
+    svg {
+      padding: 5px;
 
-    path {
-      stroke-width: 1.5;
-
-      &:hover {
-        stroke-width: 2;
+      .node {
+        r: 5;
       }
-    }
-  }
 
-  // Improve touch interactions on mobile
-  @media (hover: none) {
-    .node, path {
-      &:hover {
-        transform: none;
-        filter: none;
+      .node-label, .path-label {
+        font-size: 11px;
       }
-    }
 
-    // Increase touch targets
-    .node {
-      cursor: pointer;
-      touch-action: manipulation;
-    }
-  }
+      path {
+        stroke-width: 1.5;
 
-  // Hide scrollbar fade effect on mobile
-  @media screen and (max-width: 768px) {
-    &::after {
-      display: none;
+        &:hover {
+          stroke-width: 2;
+        }
+      }
     }
   }
 } 
