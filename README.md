@@ -1,59 +1,92 @@
-# TransportSimpleTripVisualizer
+# Transport Simple Trip Visualizer
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.7.
+A modern Angular application for visualizing transport trips with support for continued and repeated trip detection. Built with Angular 17+ and Vite.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- 🚀 Modern Angular 17+ with Vite
+- 📊 Interactive SVG-based trip visualization
+- 🔄 Automatic detection of continued trips
+- 🔁 Identification of repeated trips
+- 🎨 Responsive and modern UI
+- 📱 Mobile-friendly design
+- 🎯 Real-time updates
 
+## Prerequisites
+
+Before you begin, ensure you have the following installed:
+- Node.js (v18 or later)
+- npm (v9 or later) or yarn
+- Git
+
+## Installation
+
+1. Clone the repository:
 ```bash
-ng serve
+git clone https://github.com/yourusername/transport-simple-trip-visualizer.git
+cd transport-simple-trip-visualizer
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
+2. Install dependencies:
 ```bash
-ng generate component component-name
+npm install
+# or
+yarn install
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Development
+
+To start the development server:
 
 ```bash
-ng generate --help
+npm run dev
+# or
+yarn dev
+```
+
+Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── components/
+│   │   ├── trip-input/      # Trip input form component
+│   │   └── trip-visualizer/ # SVG visualization component
+│   ├── models/              # Data models
+│   ├── services/            # Services
+│   └── shared/              # Shared utilities
+├── assets/                  # Static assets
+└── styles/                  # Global styles
 ```
 
 ## Building
 
-To build the project run:
+To build the project for production:
 
 ```bash
-ng build
+npm run build
+# or
+yarn build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Features in Detail
 
-## Running unit tests
+### Trip Visualization
+- SVG-based interactive visualization
+- Automatic layout of trip nodes
+- Different path styles for continued and repeated trips
+- Responsive design that adapts to screen size
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### Trip Input
+- Simple form for adding new trips
+- Validation for required fields
+- Clear form functionality
+- Real-time updates to visualization
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Trip Analysis
+- Automatic detection of continued trips
+- Identification of repeated trips
+- Visual differentiation between trip types
+- Efficient trip relationship algorithms
