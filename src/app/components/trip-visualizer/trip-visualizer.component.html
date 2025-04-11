@@ -1,0 +1,49 @@
+<div class="visualization-container">
+  <svg [attr.width]="getSvgWidth()" [attr.height]="getSvgHeight()">
+    <!-- Paths -->
+    <g *ngFor="let path of paths">
+      <path
+        [attr.d]="getPathD(path.from, path.to, path.level)"
+        [class.continued]="path.isContinued"
+        [class.repeated]="path.isRepeated"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        marker-end="url(#arrowhead)"
+      />
+    </g>
+
+    <!-- Nodes -->
+    <g *ngFor="let node of nodes">
+      <circle
+        [attr.cx]="node.x"
+        [attr.cy]="node.y"
+        [attr.r]="NODE_RADIUS"
+        class="node"
+      />
+      <text
+        [attr.x]="node.x"
+        [attr.y]="node.y"
+        text-anchor="middle"
+        dominant-baseline="middle"
+        class="node-label"
+      >
+        {{ node.label }}
+      </text>
+    </g>
+
+    <!-- Arrow marker definition -->
+    <defs>
+      <marker
+        id="arrowhead"
+        markerWidth="10"
+        markerHeight="7"
+        refX="9"
+        refY="3.5"
+        orient="auto"
+      >
+        <polygon points="0 0, 10 3.5, 0 7" fill="currentColor" />
+      </marker>
+    </defs>
+  </svg>
+</div> 
