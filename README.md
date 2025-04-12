@@ -6,11 +6,7 @@
 Anish Kr Singh
 
 ## Tech Stack
-- Frontend Framework: Angular 15
-- Data Visualization: D3.js
-- Styling: Tailwind CSS
-- TypeScript
-- RxJS for reactive programming
+- Frontend Framework: Angular
 
 ## Requirements
 
