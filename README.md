@@ -1,5 +1,7 @@
 # Trip Visualizer
 
+![Screenshot 2025-04-12 114731](https://github.com/user-attachments/assets/243fb52d-f2af-4abe-bf98-a7ab19015b39)
+
 ## Author
 Anish Kr Singh
 
