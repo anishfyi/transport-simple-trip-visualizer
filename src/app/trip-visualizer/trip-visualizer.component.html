@@ -1,0 +1,127 @@
+<div *ngIf="trips.length === 0" class="empty-state">
+  <i class="material-icons empty-state-icon">place</i>
+  <p class="empty-state-title">No trips added yet</p>
+  <p class="empty-state-subtitle">Add your first trip using the form above</p>
+</div>
+
+<div *ngIf="trips.length > 0" class="visualization-container">
+  <div class="svg-container">
+    <div class="svg-wrapper">
+      <svg
+        [attr.viewBox]="'0 0 ' + Math.max(800, trips.length * 150 + 100) + ' 200'"
+        preserveAspectRatio="xMinYMin meet"
+        [style.width]="'100%'"
+        [style.min-width]="'max(100%, ' + (trips.length * 150 + 100) + 'px)'"
+        [style.height]="'200px'"
+      >
+        <defs>
+          <marker
+            id="arrow"
+            markerWidth="8"
+            markerHeight="8"
+            refX="7.5"
+            refY="4"
+            orient="auto"
+            markerUnits="userSpaceOnUse"
+          >
+            <path d="M0,0 L8,4 L0,8 L2,4 z" fill="#f59e0b" />
+          </marker>
+        </defs>
+
+        <!-- Draw the connections first (behind the nodes) -->
+        <ng-container *ngFor="let seg of getTripSegments(); let i = index">
+          <!-- Standard horizontal connections -->
+          <ng-container *ngIf="i < trips.length - 1">
+            <!-- Connection line for same level -->
+            <ng-container *ngIf="seg.level === getTripSegments()[i + 1]?.level">
+              <line
+                *ngIf="seg.type === 'line'"
+                [attr.x1]="50 + i * 150 + 4"
+                [attr.y1]="seg.level === 1 ? 100 : 50"
+                [attr.x2]="50 + (i + 1) * 150 - 4"
+                [attr.y2]="seg.level === 1 ? 100 : 50"
+                [attr.stroke]="seg.color"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+
+              <line
+                *ngIf="seg.type === 'arrow'"
+                [attr.x1]="50 + i * 150 + 4"
+                [attr.y1]="seg.level === 1 ? 100 : 50"
+                [attr.x2]="50 + (i + 1) * 150 - 4"
+                [attr.y2]="seg.level === 1 ? 100 : 50"
+                stroke="#f59e0b"
+                stroke-width="2"
+                marker-end="url(#arrow)"
+                stroke-linecap="round"
+              />
+            </ng-container>
+
+            <!-- Curved connection when changing levels -->
+            <ng-container *ngIf="seg.level !== getTripSegments()[i + 1]?.level">
+              <!-- Going from level 1 to level 2 (curve up) -->
+              <path
+                *ngIf="seg.level === 1 && getTripSegments()[i + 1]?.level === 2"
+                [attr.d]="'M' + (50 + i * 150 + 4) + ' 100 ' + 
+                         'C' + (50 + i * 150 + 75) + ' 100, ' + 
+                         (50 + i * 150 + 75) + ' 50, ' + 
+                         (50 + (i + 1) * 150 - 4) + ' 50'"
+                [attr.stroke]="seg.type === 'arrow' ? '#f59e0b' : seg.color"
+                stroke-width="2"
+                fill="none"
+                stroke-linecap="round"
+                [attr.marker-end]="seg.type === 'arrow' ? 'url(#arrow)' : ''"
+              />
+
+              <!-- Going from level 2 to level 1 (curve down) -->
+              <path
+                *ngIf="seg.level === 2 && getTripSegments()[i + 1]?.level === 1"
+                [attr.d]="'M' + (50 + i * 150 + 4) + ' 50 ' + 
+                         'C' + (50 + i * 150 + 75) + ' 50, ' + 
+                         (50 + i * 150 + 75) + ' 100, ' + 
+                         (50 + (i + 1) * 150 - 4) + ' 100'"
+                [attr.stroke]="seg.type === 'arrow' ? '#f59e0b' : seg.color"
+                stroke-width="2"
+                fill="none"
+                stroke-linecap="round"
+                [attr.marker-end]="seg.type === 'arrow' ? 'url(#arrow)' : ''"
+              />
+            </ng-container>
+          </ng-container>
+        </ng-container>
+
+        <!-- Draw the nodes and labels (on top of connections) -->
+        <ng-container *ngFor="let seg of getTripSegments(); let i = index">
+          <!-- Node circle -->
+          <circle
+            [attr.cx]="50 + i * 150"
+            [attr.cy]="seg.level === 1 ? 100 : 50"
+            r="4"
+            [attr.fill]="seg.color"
+          />
+
+          <!-- Inner circle for better contrast -->
+          <circle
+            [attr.cx]="50 + i * 150"
+            [attr.cy]="seg.level === 1 ? 100 : 50"
+            r="2"
+            fill="white"
+          />
+
+          <!-- Location labels -->
+          <text
+            [attr.x]="50 + i * 150"
+            [attr.y]="seg.level === 1 ? 130 : 80"
+            text-anchor="middle"
+            [attr.fill]="seg.color"
+            class="text-xs font-medium"
+            [attr.title]="seg.originalFrom + ' - ' + seg.originalTo"
+          >
+            {{ seg.from }} - {{ seg.to }}
+          </text>
+        </ng-container>
+      </svg>
+    </div>
+  </div>
+</div> 

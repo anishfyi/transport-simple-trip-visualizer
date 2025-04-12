@@ -1,114 +1,87 @@
-.app-container {
+:host {
+  display: block;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  padding: 0.5rem;
-  width: 100%;
-  max-width: 1800px;
-  margin: 0 auto;
-  box-sizing: border-box;
+  background-color: #f3f4f6;
+  padding: 1rem;
 }
 
-header {
-  text-align: center;
+.max-w-6xl {
+  max-width: 72rem;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.p-3 {
+  padding: 0.75rem;
+}
+
+.sm\:p-6 {
+  @media (min-width: 640px) {
+    padding: 1.5rem;
+  }
+}
+
+.bg-white {
+  background-color: white;
+}
+
+.rounded-xl {
+  border-radius: 0.75rem;
+}
+
+.shadow-xl {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.mb-4 {
   margin-bottom: 1rem;
-
-  h1 {
-    font-size: clamp(1.25rem, 3vw, 2.5rem);
-    color: #333;
-    margin: 0;
-    padding: 0 0.5rem;
-  }
 }
 
-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: 100%;
-}
-
-.content {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: 100%;
-
-  // Trip input takes limited width and centered
-  app-trip-input {
-    width: min(100%, 400px);
-    margin: 0 auto;
-  }
-
-  // Visualizer takes full width with responsive sizing
-  app-trip-visualizer {
-    width: 100%;
-    min-width: min(100%, 300px);
-    height: clamp(200px, 50vh, 300px);
-    display: block;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    overflow: auto;
-    margin: 0 auto;
-  }
-}
-
-footer {
-  text-align: center;
-  margin-top: 1rem;
-  padding: 0.5rem;
-  color: #666;
-  font-size: clamp(0.75rem, 2vw, 1rem);
-}
-
-// Tablet and larger screens
-@media (min-width: 768px) {
-  .app-container {
-    padding: 1rem;
-  }
-
-  .content {
-    gap: 2rem;
-
-    app-trip-visualizer {
-      width: 90%;
-      height: clamp(250px, 60vh, 400px);
-    }
-  }
-
-  header {
+.sm\:mb-8 {
+  @media (min-width: 640px) {
     margin-bottom: 2rem;
   }
+}
 
-  footer {
-    margin-top: 2rem;
-    padding: 1rem;
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.sm\:text-3xl {
+  @media (min-width: 640px) {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
   }
 }
 
-// Large screens
-@media (min-width: 1200px) {
-  .app-container {
-    padding: 2rem;
-  }
+.font-bold {
+  font-weight: 700;
+}
 
-  .content {
-    gap: 3rem;
+.text-gray-800 {
+  color: #1f2937;
+}
 
-    app-trip-visualizer {
-      width: 95%;
-      height: clamp(300px, 70vh, 500px);
-    }
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.sm\:text-base {
+  @media (min-width: 640px) {
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
 }
 
-// Extra large screens
-@media (min-width: 1600px) {
-  .content {
-    app-trip-visualizer {
-      width: 100%;
-    }
-  }
+.text-gray-600 {
+  color: #4b5563;
 }

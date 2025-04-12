@@ -1,92 +1,74 @@
 # Trip Visualizer
 
-A modern Angular application for visualizing transport trips with support for continued and repeated trip detection. Built with Angular 17+ and Vite.
+## Author
+Anish Kr Singh
 
-## Features
+## Tech Stack
+- Frontend Framework: Angular 15
+- Data Visualization: D3.js
+- Styling: Tailwind CSS
+- TypeScript
+- RxJS for reactive programming
 
-- 🚀 Modern Angular 17+ with Vite
-- 📊 Interactive SVG-based trip visualization
-- 🔄 Automatic detection of continued trips
-- 🔁 Identification of repeated trips
-- 🎨 Responsive and modern UI
-- 📱 Mobile-friendly design
-- 🎯 Real-time updates
+## Requirements
 
-## Prerequisites
+### Input Fields
+- Start Point
+- End Point
 
-Before you begin, ensure you have the following installed:
-- Node.js (v18 or later)
-- npm (v9 or later) or yarn
-- Git
+### Design Specifications
+- Display first three characters of both starting and ending points
+- Visual representation should adjust dynamically based on the number of trips
 
-## Installation
+### Functionality Rules
+1. **Continued Trips**
+   - When trips are continuous (e.g., Bangalore to Chennai, Chennai to Ooty)
+   - Represented by straight lines on Level 1
+   - No arrows needed
 
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/transport-simple-trip-visualizer.git
-cd transport-simple-trip-visualizer
-```
+2. **Non-Continued Trips**
+   - When trips are not continuous (e.g., Bangalore to Chennai, Ooty to Bangalore)
+   - Represented by straight lines with arrows on Level 1
 
-2. Install dependencies:
-```bash
-npm install
-# or
-yarn install
-```
+3. **Consecutive Same Location Trips**
+   - When consecutive trips have identical pickup and drop locations
+   - These trips should be represented on Level 2
 
-## Development
+4. **Dynamic Scaling**
+   - The design should automatically adjust to accommodate any number of trips
+   - All elements should fit within the defined dimensions
+   - Layout should remain clear and readable regardless of trip count
 
-To start the development server:
+## Local Development Setup
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+### Prerequisites
+- Node.js (v14 or higher)
+- npm (v6 or higher)
+- Angular CLI (v15)
 
-Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Installation Steps
+1. Clone the repository
+   ```bash
+   git clone <repository-url>
+   cd trip-visualizer
+   ```
 
-## Project Structure
+2. Install dependencies
+   ```bash
+   npm install
+   ```
 
-```
-src/
-├── app/
-│   ├── components/
-│   │   ├── trip-input/      # Trip input form component
-│   │   └── trip-visualizer/ # SVG visualization component
-│   ├── models/              # Data models
-│   ├── services/            # Services
-│   └── shared/              # Shared utilities
-├── assets/                  # Static assets
-└── styles/                  # Global styles
-```
+3. Start the development server
+   ```bash
+   npm start
+   ```
 
-## Building
+4. Open your browser and navigate to
+   ```
+   http://localhost:4200
+   ```
 
-To build the project for production:
-
-```bash
-npm run build
-# or
-yarn build
-```
-
-## Features in Detail
-
-### Trip Visualization
-- SVG-based interactive visualization
-- Automatic layout of trip nodes
-- Different path styles for continued and repeated trips
-- Responsive design that adapts to screen size
-
-### Trip Input
-- Simple form for adding new trips
-- Validation for required fields
-- Clear form functionality
-- Real-time updates to visualization
-
-### Trip Analysis
-- Automatic detection of continued trips
-- Identification of repeated trips
-- Visual differentiation between trip types
-- Efficient trip relationship algorithms
+### Available Scripts
+- `npm start`: Start the development server
+- `npm run build`: Build the project for production
+- `npm test`: Run unit tests

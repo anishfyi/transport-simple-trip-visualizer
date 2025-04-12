@@ -1,0 +1,89 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+.empty-state {
+  @apply flex flex-col items-center justify-center py-10 sm:py-16 text-gray-500 bg-gray-50 rounded-lg border border-dashed border-gray-300;
+}
+
+.empty-state-icon {
+  @apply text-gray-400 mb-4;
+  font-size: 48px;
+}
+
+.empty-state-title {
+  @apply text-lg font-medium mb-1;
+}
+
+.empty-state-subtitle {
+  @apply text-sm;
+}
+
+.visualization-container {
+  @apply bg-gray-50 p-3 sm:p-6 rounded-lg border border-gray-200;
+}
+
+.svg-container {
+  @apply relative w-full overflow-x-auto pb-4;
+
+  /* Hide scrollbar buttons and make background transparent */
+  &::-webkit-scrollbar-button {
+    display: none;
+  }
+
+  /* Customize scrollbar width */
+  &::-webkit-scrollbar {
+    height: 4px; /* Even thinner scrollbar */
+  }
+
+  /* Make track transparent */
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* Style the thumb */
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  /* Firefox scrollbar customization */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+.svg-wrapper {
+  min-height: 200px;
+  overflow: visible;
+}
+
+svg {
+  overflow: visible;
+}
+
+text {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+} 

@@ -1,0 +1,38 @@
+<div class="trip-input-container">
+  <div class="input-group">
+    <div class="input-wrapper">
+      <label for="from" class="input-label">Start Point</label>
+      <input
+        #from
+        id="from"
+        placeholder="Delhi"
+        class="input-field"
+      />
+    </div>
+    <div class="input-wrapper">
+      <label for="to" class="input-label">End Point</label>
+      <input
+        #to
+        id="to"
+        placeholder="Mumbai"
+        class="input-field"
+      />
+    </div>
+  </div>
+  <div class="button-group">
+    <button
+      (click)="onAddTrip(from.value, to.value); from.value = ''; to.value = ''"
+      class="primary-button"
+    >
+      <i class="material-icons icon">add</i>
+      Add Trip
+    </button>
+    <button
+      (click)="onClearTrips()"
+      class="secondary-button"
+    >
+      <i class="material-icons icon">delete</i>
+      Clear All
+    </button>
+  </div>
+</div> 

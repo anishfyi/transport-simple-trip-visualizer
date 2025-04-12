@@ -1,0 +1,57 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+.trip-input-container {
+  @apply bg-gray-50 p-3 sm:p-5 rounded-lg mb-6 sm:mb-8 border border-gray-200;
+}
+
+.input-group {
+  @apply flex flex-col sm:flex-row gap-3 sm:gap-4 mb-2;
+}
+
+.input-wrapper {
+  @apply flex-1;
+}
+
+.input-label {
+  @apply block text-sm font-medium text-gray-700 mb-1;
+}
+
+.input-field {
+  @apply w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all;
+}
+
+.button-group {
+  @apply flex flex-col sm:flex-row gap-3 sm:gap-4 mt-3 sm:mt-4;
+}
+
+.primary-button {
+  @apply px-4 py-2 sm:px-5 sm:py-3 bg-black text-white rounded-lg hover:bg-gray-900 transition-colors focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 flex items-center justify-center;
+}
+
+.secondary-button {
+  @apply px-4 py-2 sm:px-5 sm:py-3 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 flex items-center justify-center;
+}
+
+.icon {
+  @apply mr-2;
+  font-size: 16px;
+} 
